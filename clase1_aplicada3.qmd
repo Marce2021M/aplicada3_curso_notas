@@ -1,0 +1,49 @@
+---
+title: "Discriminación"
+lang: es
+author: "Marcelino"
+date: today
+format:
+  html:
+    page-layout: full
+    embed-resources: true
+---
+
+```{r cargndo librerias, include=FALSE}
+
+library(MASS)
+library(ggplot2)
+
+attach(iris)
+str(iris)
+```
+
+```{r}
+# Escalamos variables
+
+iris[1:4] <- scale(iris[1:4])
+
+# Crear conjuntos de entrenamiento y prueba
+
+set.seed(1234)
+
+sample <- sample(c(TRUE, FALSE), nrow(iris), replace = TRUE, prob = c(0.7, 0.3))
+
+train <- iris[sample, ]
+
+test <- iris[!sample, ]
+
+(model <- lda(Species ~ ., data = train))
+
+(predicted <- predict(model, test))
+
+```
+
+
+```{r}
+lda.plot <- cbind(train, predict(model)$x)
+
+#create plot
+
+ggplot(lda.plot, aes(LD1, LD2, color = Species)) + geom_point() + ggtitle("LDA Plot")
+```
