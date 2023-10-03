@@ -1,0 +1,26 @@
+---
+title: "Componentes principales"
+lang: es
+author: "Marcelino"
+date: today
+format:
+  html:
+    page-layout: full
+    embed-resources: true
+---
+
+```{r}
+data("iris")
+
+str(iris)
+set.seed(111)
+ind <- sample(2, nrow(iris), replace = TRUE, prob = c(0.8, 0.2))
+
+training <- iris[ind == 1, ]
+testing <- iris[ind == 2, ]
+
+pc <- prcomp(training[, -5], center = TRUE, scale. = TRUE)
+
+attributes(pc)
+print(pc)
+```
