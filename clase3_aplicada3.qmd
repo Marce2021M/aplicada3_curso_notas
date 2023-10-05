@@ -1,0 +1,15 @@
+---
+title: "Aminoácidos"
+lang: es
+author: "Marcelino"
+date: today
+format:
+  html:
+    page-layout: full
+    embed-resources: true
+---
+
+
+```{r}
+ResourceObject["MNIST"]
+```
